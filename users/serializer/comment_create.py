@@ -14,19 +14,17 @@ class CreateCommentSerializer(serializers.Serializer):
     def create(self, request):
         validated_data = self.validated_data
         user = request.user
-        print(validated_data['type'])
         if validated_data['type'] == 'animal':
-            object = AnimalInfo.objects.get(id=validated_data['id_object'])
-            print(object)
-            Comment.objects.create(content_object=object,
+            object_animal = AnimalInfo.objects.get(id=validated_data['id_object'])
+            Comment.objects.create(content_object=object_animal,
                                    comment=validated_data['comment'],
                                    user=user,
                                    object_id=validated_data['id_object'])
+            return object_animal
         if validated_data['type'] == 'news':
-            object = AnimalNews.objects.get(id=validated_data['id_object'])
-            print(object)
-            Comment.objects.create(content_object=object,
+            object_news = AnimalNews.objects.get(id=validated_data['id_object'])
+            Comment.objects.create(content_object=object_news,
                                    comment=validated_data['comment'],
                                    user=user,
                                    object_id=validated_data['id_object'])
-        return object
+            return object_news

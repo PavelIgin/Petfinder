@@ -8,7 +8,6 @@ from users.models import Comment
 
 
 class CommentAnimal(APIView):
-    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request, pk):
 

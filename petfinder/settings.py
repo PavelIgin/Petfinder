@@ -20,6 +20,7 @@ INSTALLED_APPS = [
                      'rest_framework',
                      'rest_framework.authtoken',
                      'drf_yasg',
+                     'silk',
                  ] + CUSTOM_APPS
 
 MIDDLEWARE = [
@@ -30,7 +31,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'rest.middlweare.LoggerRequest'
+    'rest.middlweare.LoggerRequest',
+    'silk.middleware.SilkyMiddleware'
 ]
 
 ROOT_URLCONF = 'petfinder.urls'
@@ -146,6 +148,9 @@ LOGGING = {
 
 EMAIL_USE_TLS = True
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 CELERY_RESULT_BACKEND = 'django-db'
 CELERY_CACHE_BACKEND = 'django-cache'
 
@@ -162,7 +167,6 @@ SWAGGER_SETTINGS = {
         }
     },
 }
-
 REDOC_SETTINGS = {
     'LAZY_RENDERING': False,
 }
@@ -174,6 +178,6 @@ except ImportError:
     pass
 
 LOG_DIR = os.path.join(BASE_DIR, 'logger')
-
+SILKY_MIDDLEWARE_CLASS = 'path.to.your.middleware.MyCustomSilkyMiddleware'
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR)

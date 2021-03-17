@@ -23,8 +23,8 @@ class AnimalColorSerializer (serializers.ModelSerializer):
 
 
 class AnimalInfoSerializer(serializers.ModelSerializer):
-    color = AnimalColorSerializer()
-    animal_type = AnimalTypeSerializer()
+    color = AnimalColorSerializer().serializer_related_field(read_only=True)
+    animal_type = AnimalTypeSerializer().serializer_related_field(read_only=True)
     id = serializers.ReadOnlyField()
 
     class Meta:

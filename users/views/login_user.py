@@ -2,7 +2,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login
 
-
 class LoginUser(viewsets.ViewSet):
     """
     класс для логирования пользователя

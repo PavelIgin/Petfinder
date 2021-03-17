@@ -4,9 +4,10 @@ from rest_framework.response import Response
 
 from rest.serializer import AnimalNewsSerializer, UrlAnimalNewsSerializer
 
+from django.shortcuts import render
+
 
 class AnimalNewsView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
     serializer_class = UrlAnimalNewsSerializer
 
     def get(self, request):

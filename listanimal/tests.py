@@ -1,7 +1,6 @@
 from unittest.mock import patch
 from unittest import TestCase
-from listanimal.parseranimal import RtNewsAnimalParser
-from listanimal.management.commands.createanimal import Command
+from listanimal.management.service.parseranimal import RtNewsAnimalParser
 
 
 class MockTestParserAnimal(TestCase):

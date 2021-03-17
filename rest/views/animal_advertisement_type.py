@@ -7,7 +7,6 @@ from rest.serializer import AnimalTypeSerializer
 
 
 class AnimalAdvertisementTypeView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
 

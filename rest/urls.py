@@ -24,7 +24,7 @@ from rest_framework.authtoken import views
 
 router = DefaultRouter()
 router.register('advertisement', AnimalAdvertisementView, basename='advertisement')
-router.register('comment_object',CommentObjectView, basename='comment_object')
+router.register('comment_object', CommentObjectView, basename='comment_object')
 
 urlpatterns = [
     path('news/', AnimalNewsView.as_view(), name='news'),
@@ -33,4 +33,4 @@ urlpatterns = [
     path('favorit/', FavoritAnimal.as_view(), name='advertisement_favorit'),
     path('token/', views.obtain_auth_token, name='token'),
     path('comment/<pk>', CommentAnimal.as_view(), name='comment'),
-    path('comment_edit/', CommentEditView.as_view({'post': 'create', 'delete': 'destroy'}), name='comment_edit')]+router.urls
+    path('comment_edit/', CommentEditView.as_view({'patch': 'partial_update', 'delete': 'destroy'}), name='comment_edit')]+router.urls

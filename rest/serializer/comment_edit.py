@@ -1,7 +1,6 @@
 from rest_framework import serializers
 
-from users.models.comment import Comment
-import datetime
+from rest.service import CommentService
 
 
 class CommentEdit(serializers.Serializer):
@@ -9,22 +8,9 @@ class CommentEdit(serializers.Serializer):
     edit_comment = serializers.CharField(max_length=200)
 
     def comment_edit(self, request):
-        validated_data = self.validated_data
-        comment_object = Comment.objects.get(id=validated_data['object_id'])
-        time_difference = datetime.datetime.now() - datetime.timedelta(minutes=15)
-        if request.user == comment_object.user and comment_object.date_create.time() > time_difference.time():
-            comment_object.comment = validated_data['edit_comment']
-            comment_object.save()
-            return {'status': 'comment was edited'}
-        else:
-            return {'status': 'more than 15 minutes have passed'}
+        edit_comment = CommentService
+        return edit_comment.comment_edit(self, request)
 
     def delete_comment(self, request):
-        validated_data = self.validated_data
-        comment_object = Comment.objects.get(id=validated_data['object_id'])
-        time_difference = datetime.datetime.now() - datetime.timedelta(minutes=15)
-        if request.user == comment_object.user and comment_object.date_create.time() > time_difference.time():
-            comment_object.delete()
-            return {'status': 'comment was deleted'}
-        else:
-            return {'status': 'more than 15 minutes have passed'}
+        delete_comment = CommentService
+        return delete_comment.delete_comment(self,request)

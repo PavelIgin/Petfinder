@@ -22,5 +22,5 @@ urlpatterns = [
     path('rest/', include('rest.urls')),
     path('users/', include('users.urls'))
 ]
-
+urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
 urlpatterns += yasg_url

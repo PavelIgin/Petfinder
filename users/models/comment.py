@@ -14,4 +14,4 @@ class Comment(models.Model):
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     content_object = GenericForeignKey('content_type', 'object_id')
     comment = models.CharField(max_length=200)
-    date_create = models.DateTimeField(auto_now=True)
+    date_create = models.DateTimeField(auto_now=True, editable=False)

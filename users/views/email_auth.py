@@ -12,11 +12,11 @@ class EmailAuth(viewsets.ViewSet):
         """
         При введении пароля пользователя и email отправляет сообщение на email
         """
-        serialazer = EmailAuthSerialazer(data=request.data)
-        serialazer.is_valid(raise_exception=True)
-        if serialazer.validated_data['password'] != request.user.password:
+        serializer = EmailAuthSerialazer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        if serializer.validated_data['password'] != request.user.password:
             return Response({'status': 'неправильный пароль'})
-        serialazer.email_auth(validated_data=serialazer.validated_data, request=request)
+        serializer.email_auth(validated_data=serializer.validated_data, request=request)
         return Response({'status': 'check your email'})
 
     @action(methods=['get'], detail=True, permission_classes=['AllowAny'])

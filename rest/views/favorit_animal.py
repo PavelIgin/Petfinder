@@ -10,6 +10,6 @@ class FavoritAnimal(APIView):
 
     def get(self, request):
 
-        queriset = request.user.favorit_animal.all()
-        private_data = AnimalInfoSerializer(queriset, many=True).data
+        queryset = request.user.favorit_animal.all()
+        private_data = AnimalInfoSerializer(queryset, many=True).data
         return Response(private_data)

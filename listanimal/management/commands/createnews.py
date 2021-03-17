@@ -1,5 +1,5 @@
 import logging
-from listanimal.parseranimal import RtNewsAnimalParser
+from listanimal.management.service.parseranimal import RtNewsAnimalParser
 from django.core.management.base import BaseCommand
 from listanimal.models import AnimalNews
 

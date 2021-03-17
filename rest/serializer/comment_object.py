@@ -14,11 +14,11 @@ class CommentObject(serializers.Serializer):
     def comment_object(self):
         validated_data = self.validated_data
         if validated_data['content_type'] == 'animal':
-            object = AnimalInfo.objects.get(id=validated_data['object_id'])
-            object_type = ContentType.objects.get_for_model(object)
-            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object.id)
+            object_animal = AnimalInfo.objects.get(id=validated_data['object_id'])
+            object_type = ContentType.objects.get_for_model(object_animal)
+            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object_animal.id)
         if validated_data['content_type'] == 'news':
-            object = AnimalNews.objects.get(id=validated_data['object_id'])
-            object_type = ContentType.objects.get_for_model(object)
-            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object.id)
+            object_news = AnimalNews.objects.get(id=validated_data['object_id'])
+            object_type = ContentType.objects.get_for_model(object_news)
+            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object_news.id)
         return comment
