@@ -6,4 +6,4 @@ class CustomUser(AbstractUser):
     """
     Дает возможность выбрать приоритетные новости
     """
-    favorit_animal = models.ManyToManyField('listanimal.AnimalInfo', blank=True,db_constraint=False)
+    favorit_animal = models.ManyToManyField('listanimal.AnimalInfo', blank=True, db_constraint=False)
