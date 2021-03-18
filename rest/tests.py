@@ -36,7 +36,7 @@ class TestApiPetfinder(APITestCase):
     def test_animal_news(self):
         url = reverse('news')
         response = self.client.get(url)
-        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.status_code, 400)
         self.authorize()
         response = self.client.get(url + '?search_line=нас')
         self.assertEqual(response.status_code, 200)

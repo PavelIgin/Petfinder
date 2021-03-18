@@ -43,7 +43,7 @@ class VkWallPostAnimal():
             logger.error(msg='Ошибка отправки объявления '
                              'в вк:{},{}'.format(one_animal['name'],
                                                  timezone.now()))
-            log_db = open('listanimal/logger/advertisement.log', 'r')
+            log_db = open('logger/advertisement.log', 'r')
             NewestLogFileContent.objects.update_or_create(
                             log_filename='commands.advertisement',
                             defaults={'content': log_db.readlines()[-100:-1]})

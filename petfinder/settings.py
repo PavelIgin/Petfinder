@@ -8,7 +8,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-CUSTOM_APPS = ['listanimal', 'users', 'rest']
+CUSTOM_APPS = ['users', 'listanimal',  'rest']
 
 INSTALLED_APPS = [
                      'django.contrib.admin',
@@ -31,8 +31,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'silk.middleware.SilkyMiddleware',
     'rest.middlweare.LoggerRequest',
-    'silk.middleware.SilkyMiddleware'
 ]
 
 ROOT_URLCONF = 'petfinder.urls'

@@ -52,7 +52,7 @@ class VkWallPostNews:
             logger.error(msg='Ошибка отправки новости в '
                          'вк {},{}'.format(animal_news['description_news'],
                                            str(timezone.now())))
-            log_db = open('listanimal/logger/advertisement.log', 'r')
+            log_db = open('logger/advertisement.log', 'r')
             NewestLogFileContent.objects.update_or_create(
                         log_filename='commands.createnews',
                         defaults={'content': log_db.read()[-100:-1]})

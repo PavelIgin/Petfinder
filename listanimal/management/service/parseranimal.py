@@ -41,15 +41,12 @@ class RtNewsAnimalParser:
                 request_url_new = self.session.get(url_new,
                                                    headers=self.headers)
                 soup_url_new = bs(request_url_new.content, 'html.parser')
-                self.gathering_news(self, soup_url_new,
-                                                  list_news, url_new)
-        return soup_url_new
+                self.gathering_news(soup_url_new, list_news, url_new)
 
     def gathering_news(self, soup_url_new, list_news, url_new):
 
         if soup_url_new.find('div', 'article__summary') is None:
-            self.add_news_different_format(self, soup_url_new,
-                                                         list_news, url_new)
+            self.add_news_different_format(self, soup_url_new, list_news, url_new)
         else:
             heading = soup_url_new.find('div', 'article__summary').text
             time_post = soup_url_new.find('time', 'date')['datetime']
@@ -57,13 +54,13 @@ class RtNewsAnimalParser:
                         'description_news': list_news.text.strip(),
                         'heading': heading.strip(),
                         'time_post': time_post}
-            self.add_main_text(self, set_news, soup_url_new)
-            self.add_url_media(self, set_news, soup_url_new)
-            self.add_mediaplayer_mp4(self, set_news,
+            self.add_main_text(set_news, soup_url_new)
+            self.add_url_media(set_news, soup_url_new)
+            self.add_mediaplayer_mp4(set_news,
                                      time_post, soup_url_new)
-            self.add_mediaplayer_you_tube(self, soup_url_new,
+            self.add_mediaplayer_you_tube(soup_url_new,
                                                         set_news)
-            self.add_galery_media(self, soup_url_new, set_news)
+            self.add_galery_media(soup_url_new, set_news)
             self.articles.append(set_news)
 
     def add_main_text(self, set_news, soup_url_new):

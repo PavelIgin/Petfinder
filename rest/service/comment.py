@@ -7,9 +7,9 @@ class CommentService:
     def comment_edit(self, request):
         comment_object = CommentService._get_comment_object(self)
         validated_data = CommentService._get_validated_data(self)
-        if CommentService._checking_user_for_own_comment(self, comment_object, request) != True:
+        if CommentService._checking_user_for_own_comment(self, comment_object, request):
             return {'status': 'You have not permissions for this comment'}
-        if CommentService._check_how_old_this_comment(self, comment_object) != True:
+        if CommentService._check_how_old_this_comment(self, comment_object):
             return {'status': 'this comment created more then 15 minutes'}
         else:
             comment_object.comment = validated_data['edit_comment']

@@ -31,7 +31,7 @@ class Command(BaseCommand):
                          headers=headers, verify=False)
         json_file = json.loads(r.text)
         dict_animal = json_file.get('animals')
-        self.create_animal_objects(self, dict_animal)
+        self.create_animal_objects(dict_animal)
 
     def create_animal_objects(self, dict_animal):
         sum_new_animals = ''
