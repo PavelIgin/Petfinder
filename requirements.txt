@@ -4,6 +4,6 @@ celery==4.4.2
 djangorestframework==3.11.0
 djangorestframework-simplejwt==4.3.0
 djoser==2.0.3
-requests==2.9.1
+requests==2.20.0
 drf-yasg==1.17.1
 django-silk==4.1.0
