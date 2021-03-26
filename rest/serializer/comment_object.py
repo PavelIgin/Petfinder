@@ -1,9 +1,6 @@
 from rest_framework import serializers
 
-from listanimal.models import AnimalInfo, AnimalNews
-
-from users.models.comment import Comment
-from django.contrib.contenttypes.models import ContentType
+from rest.service import comment_object_create
 
 
 class CommentObject(serializers.Serializer):
@@ -11,14 +8,6 @@ class CommentObject(serializers.Serializer):
     content_type = serializers.ChoiceField(choices=[('news', 'news'), ('animal', 'animal')])
     object_id = serializers.IntegerField(min_value=1)
 
-    def comment_object(self):
-        validated_data = self.validated_data
-        if validated_data['content_type'] == 'animal':
-            object_animal = AnimalInfo.objects.get(id=validated_data['object_id'])
-            object_type = ContentType.objects.get_for_model(object_animal)
-            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object_animal.id)
-        if validated_data['content_type'] == 'news':
-            object_news = AnimalNews.objects.get(id=validated_data['object_id'])
-            object_type = ContentType.objects.get_for_model(object_news)
-            comment = Comment.objects.filter(content_type__pk=object_type.id, object_id=object_news.id)
-        return comment
+    def request_for_comment_create(self):
+
+        return comment_object_create(self)

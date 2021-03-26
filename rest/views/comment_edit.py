@@ -1,8 +1,7 @@
 from rest_framework import viewsets
 from rest_framework.response import Response
-from rest_framework.decorators import action
 from rest_framework import permissions
-from rest.serializer.comment_edit import CommentEdit
+from rest.serializer import CommentEdit, CommentDelete
 
 
 class CommentEditView(viewsets.ViewSet):
@@ -15,7 +14,7 @@ class CommentEditView(viewsets.ViewSet):
         return Response(result)
 
     def destroy(self, request):
-        serializer = CommentEdit(data=request.data)
+        serializer = CommentDelete(data=request.data)
         serializer.is_valid(raise_exception=True)
         result = serializer.delete_comment(request)
         return Response(result)

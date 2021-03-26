@@ -20,11 +20,9 @@ class CreateCommentSerializer(serializers.Serializer):
                                    comment=validated_data['comment'],
                                    user=user,
                                    object_id=validated_data['id_object'])
-            return object_animal
         if validated_data['type'] == 'news':
             object_news = AnimalNews.objects.get(id=validated_data['id_object'])
             Comment.objects.create(content_object=object_news,
                                    comment=validated_data['comment'],
                                    user=user,
                                    object_id=validated_data['id_object'])
-            return object_news

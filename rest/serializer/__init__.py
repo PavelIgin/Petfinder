@@ -6,3 +6,4 @@ from .animal import AnimalColorSerializer, AnimalTypeSerializer\
 from .comment import CommentSerializer
 from .comment_object import CommentObject
 from .comment_edit import CommentEdit
+from .comment_delete import CommentDelete

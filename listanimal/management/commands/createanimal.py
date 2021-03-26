@@ -6,8 +6,8 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 
 from listanimal.models import AnimalInfo, AnimalColor, AnimalType
-from listanimal.management.service.vk_wall_post_animal import VkWallPostAnimal
-from listanimal.management.service.send_mail import SendMail
+from listanimal.service.vk_wall_post import vk_wall_advertisement
+from listanimal.service import send_animal
 logger = logging.getLogger('commands.create_animal')
 
 
@@ -58,5 +58,5 @@ class Command(BaseCommand):
             if is_created:
                 sum_new_animals += '\n' + 'Новое объявление:' \
                                     + str(animal_type) + '' + defaults['name']
-                VkWallPostAnimal.vk_wall_post(self, one_animal, animal_type)
-        SendMail.send_animal(self, sum_new_animals, one_animal)
+                vk_wall_advertisement(one_animal, animal_type)
+        send_animal(sum_new_animals, one_animal)

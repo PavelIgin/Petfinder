@@ -18,7 +18,7 @@ class CommentObjectView(viewsets.ReadOnlyModelViewSet):
         serializer = CommentObject(data=request.GET)
         try:
             serializer.is_valid(raise_exception=True)
-            self.queryset = serializer.comment_object()
+            self.queryset = serializer.request_for_comment_create()
             return super().list(self, request, *args, **kwargs)
         except ObjectDoesNotExist:
-            return Response({'status': 'commetn is not existing'})
+            return Response({'status': 'commetn does not existing'})

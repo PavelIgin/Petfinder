@@ -1,10 +1,6 @@
 from rest_framework import serializers
 
-from django.db.models import Q
-
-from listanimal.models import AnimalNews
-
-
+from rest.service import filter_news
 class UrlAnimalNewsSerializer(serializers.Serializer):
     """
     выводит новости в которых есть введенное предложение в search_line
@@ -12,9 +8,5 @@ class UrlAnimalNewsSerializer(serializers.Serializer):
     search_line = serializers.CharField()
 
     def search_news(self):
-        validated_data = self.validated_data
-        queryset = AnimalNews.objects.filter(
-            Q(description_news__contains=validated_data['search_line']) |
-            Q(main_text__contains=validated_data['search_line']) |
-            Q(heading__contains=validated_data['search_line']))
-        return queryset
+
+        return filter_news(self)

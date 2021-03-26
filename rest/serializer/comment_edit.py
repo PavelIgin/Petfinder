@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from rest.service import CommentService
+from rest.service import comment_edit
 
 
 class CommentEdit(serializers.Serializer):
@@ -8,9 +8,5 @@ class CommentEdit(serializers.Serializer):
     edit_comment = serializers.CharField(max_length=200)
 
     def comment_edit(self, request):
-        edit_comment = CommentService
-        return edit_comment.comment_edit(self, request)
 
-    def delete_comment(self, request):
-        delete_comment = CommentService
-        return delete_comment.delete_comment(self,request)
+        return comment_edit(self, request)
